@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-04-03T16:43:45.684383" rpa="false" schemaversion="5">
+<suite id="s1" name="Post Get Put Users" source="c:\RobotFramework\API\TestesDeApiRobotFramework\tests\post_get_put_users.robot">
+<test id="s1-t1" name="Cenário com Post: Cadastrar um novo usuário com sucesso" line="9">
+<kw name="Login com usuário Sysadmin" owner="users">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-04-03T16:43:45.908243" level="INFO">${body} = {'mail': 'sysadmin@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=sysadmin@qacoders.com</arg>
+<arg>password=1234@Test</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-04-03T16:43:45.907243" elapsed="0.004999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-04-03T16:43:45.913242" level="INFO">{'mail': 'sysadmin@qacoders.com', 'password': '1234@Test'}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-04-03T16:43:45.912242" elapsed="0.001000"/>
+</kw>
+<kw name="Criar sessão" owner="users">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-04-03T16:43:45.914239" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json', 'disable_warnings': '1'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>disable_warnings=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-04-03T16:43:45.914239" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-03T16:43:45.915240" level="INFO">Creating Session using : alias=APISwagger, url=https://suits.qacoders-academy.com.br, headers={'accept': 'application/json', 'Content-Type': 'application/json', 'disable_warnings': '1'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=APISwagger</arg>
+<arg>url=https://suits.qacoders-academy.com.br</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-03T16:43:45.914239" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-04-03T16:43:45.913242" elapsed="0.002996"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-04-03T16:43:48.019597" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x00000189034CB1A0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+<msg time="2024-04-03T16:43:50.297257" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0D3D0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+<msg time="2024-04-03T16:43:52.780943" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0E270&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+<msg time="2024-04-03T16:43:54.854584" level="FAIL">ConnectionError: HTTPSConnectionPool(host='suits.qacoders-academy.com.br', port=443): Max retries exceeded with url: /api/login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0EAB0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</msg>
+<var>${resposta}</var>
+<arg>alias=APISwagger</arg>
+<arg>url=/api/login</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2024-04-03T16:43:45.916238" elapsed="8.962329">ConnectionError: HTTPSConnectionPool(host='suits.qacoders-academy.com.br', port=443): Max retries exceeded with url: /api/login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0EAB0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-04-03T16:43:54.879566" elapsed="0.001000"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<arg>${TOKEN}</arg>
+<arg>${resposta.json()["token"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" start="2024-04-03T16:43:54.880566" elapsed="0.000999"/>
+</kw>
+<status status="FAIL" start="2024-04-03T16:43:45.906244" elapsed="8.975321">ConnectionError: HTTPSConnectionPool(host='suits.qacoders-academy.com.br', port=443): Max retries exceeded with url: /api/login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0EAB0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</kw>
+<kw name="Cadastrar um novo usuário" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.884563" elapsed="0.000000"/>
+</kw>
+<kw name="Conferir se o novo usuário foi cadastrado corretamente" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.886573" elapsed="0.000989"/>
+</kw>
+<kw name="Conferir os dados retornados do novo usuário" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.889560" elapsed="0.001001"/>
+</kw>
+<kw name="Consultar os dados do usuário" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.892559" elapsed="0.001038"/>
+</kw>
+<kw name="Login com usuário criado" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.894557" elapsed="0.000000"/>
+</kw>
+<kw name="Alterar dados de um usuário" owner="users">
+<status status="NOT RUN" start="2024-04-03T16:43:54.895557" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-04-03T16:43:45.905246" elapsed="8.991309">ConnectionError: HTTPSConnectionPool(host='suits.qacoders-academy.com.br', port=443): Max retries exceeded with url: /api/login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0EAB0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))</status>
+</test>
+<status status="FAIL" start="2024-04-03T16:43:45.692376" elapsed="9.206180"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Post Get Put Users">Post Get Put Users</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-04-03T16:43:48.019597" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x00000189034CB1A0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+<msg time="2024-04-03T16:43:50.297257" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0D3D0&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+<msg time="2024-04-03T16:43:52.780943" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x0000018906F0E270&gt;: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /api/login</msg>
+</errors>
+</robot>
