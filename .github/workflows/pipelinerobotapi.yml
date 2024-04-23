@@ -1,7 +1,8 @@
 name: Robot Framework Tests
 on: push
 jobs:
-  test:
+  test: 
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         # run: echo Fazendo clone do repositorio na maquina virtual
