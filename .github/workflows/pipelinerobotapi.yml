@@ -22,7 +22,7 @@ jobs:
       - name: Run Robot Framework tests
         # run: echo Executando os testes de API do Robot
         run: |
-          robot --outputdir results/ TestesDeApiRobotFramework/tests/
+          robot --outputdir results/ teste-api-robot/tests/
          # no lugar de serverest/tests coloca o caminho da pasta que vc vai usar, onde esta salvo os tests case, ela vai ser salva dentro de uma pasta results, com todos os reports 
 
       - name: Test Report
