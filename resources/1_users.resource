@@ -77,3 +77,10 @@ Alterar dados de um usuário
     Set Test Variable    ${ALTERAR_DADOS_USUARIO}                  ${alterar_dados_usuario.json()}
     Log  ${ALTERAR_DADOS_USUARIO}
     Dictionary Should Contain Item    ${ALTERAR_DADOS_USUARIO}    msg    Dados atualizados com sucesso!
+
+Excluir usuário criado
+  ${headers}  Create Dictionary  Authorization=${TOKEN}
+  ${excluir_usuario}  DELETE On Session  alias=Suits  url=/api/user/${ID_USUARIO}    expected_status=200  headers=${headers}  
+  Log   ${excluir_usuario.json()}
+  Should Be Equal As Strings      ${excluir_usuario.json()}[msg]   Usuário deletado com sucesso!.
+

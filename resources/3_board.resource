@@ -47,3 +47,30 @@ Alterar dados de um usuário
     Set Test Variable    ${ALTERAR_DADOS_DIRETORIA}                  ${alterar_dados_diretoria.json()}
     Log  ${ALTERAR_DADOS_DIRETORIA}
     Dictionary Should Contain Item    ${ALTERAR_DADOS_DIRETORIA}    msg    Cadastro atualizado com sucesso.
+
+Campo boardName sem preenchimento  
+  ${body}  Create Dictionary   boardName=
+  Log  ${body} 
+  ${headers}  Create Dictionary  Authorization=${TOKEN}
+  ${resposta}  POST On Session  alias=Suits   url=/api/board  json=${body}   expected_status=400  headers=${headers}
+  Log  ${resposta.json()}
+  Should Be Equal As Strings      ${resposta.json()}[error]   	["O campo 'diretoria' é obrigatório."] 
+
+#Campo boardName com 51 caracteres 
+  #${body}  Create Dictionary   boardName=Aaaaaaaaaaaaaaaaaaaaaaaa Aaaaaaaaaaaaaaaaaaaaaaaaa
+  #Log  ${body} 
+  #${headers}  Create Dictionary  Authorization=${TOKEN}
+  #${resposta}  POST On Session  alias=Suits   url=/api/board  json=${body}   expected_status=400  headers=${headers}
+  #Log  ${resposta.json()}
+  #Set Test Variable    ${BOARDNAME_CARACTER_MAXIMO}    ${resposta.json()}
+  #Dictionary Should Contain Item    ${BOARDNAME_CARACTER_MAXIMO}    error    O campo 'diretoria' deve possuir no máximo 50 caracteres. (RETORNOU STATUS 201)
+
+Campo boardName com caractere difente de &
+  ${body}  Create Dictionary   boardName=***
+  Log  ${body} 
+  ${headers}  Create Dictionary  Authorization=${TOKEN}
+  ${resposta}  POST On Session  alias=Suits   url=/api/board  json=${body}   expected_status=400  headers=${headers}
+  Log  ${resposta.json()}
+  Should Be Equal As Strings      ${resposta.json()}[error]     ["O campo 'diretoria' só pode conter letras e o caractere especial '&'."] 
+
+

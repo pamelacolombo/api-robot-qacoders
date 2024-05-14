@@ -6,7 +6,7 @@ Resource    ../resources/3_board.resource
 
     
 *** Test Cases ***
-Cenário com Post: Cadastrar um novo usuário com sucesso
+Cadastrar um novo usuário com sucesso, consultar e alterar novo usuário
   Login com usuário Sysadmin
   Cadastrar um novo usuário Board
   Conferir se o novo usuário foi cadastrado corretamente
@@ -14,5 +14,14 @@ Cenário com Post: Cadastrar um novo usuário com sucesso
   Consultar os dados do usuário 
   Alterar dados de um usuário
 
- 
-  
+Deixar o campo boardName sem preenchimento 
+  Login com usuário Sysadmin
+  Campo boardName sem preenchimento
+
+#Cenário com Post: Preencher o campo boardName com 51 caracteres 
+  #Login com usuário Sysadmin
+  #Campo boardName com 51 caracteres
+
+Preencher o campo diretoria com caractere especial diferente de & 
+  Login com usuário Sysadmin
+  Campo boardName com caractere difente de &

@@ -8,7 +8,7 @@ Resource    ../resources/0_auth.resource
 
     
 *** Test Cases ***
-Cenário com Post: Cadastrar um novo usuário com sucesso
+Cadastrar um novo usuário com sucesso, consultar e alterar novo usuário
   Login com usuário Sysadmin
   Cadastrar um novo usuário Board
   Cadastrar um novo usuário Cost Center
